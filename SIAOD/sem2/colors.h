@@ -6,6 +6,7 @@
 #define SEM2_COLORS_H
 
 #define GREEN_BG "[42m"
+#define RED_BG "[41m"
 
 #define BLACK_FG "[30m"
 #define BLUE_FG_BOLD "[1;34m"

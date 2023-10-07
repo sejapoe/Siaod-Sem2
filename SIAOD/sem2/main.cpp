@@ -6,6 +6,8 @@
 #include "enter.h"
 #include "1.h"
 #include "2.h"
+#include "3.h"
+#include "4.h"
 
 using std::string;
 using std::pair;
@@ -28,6 +30,9 @@ int main() {
             {"2.uniq",  {"check keys for unique",           task2checkUnique}},
             {"2.lin",   {"linear search by key",            task2linear}},
             {"2.bin",   {"binary search by key",            task2binary}},
+            {"3",       {"hashes",                          task3}},
+            {"4.1",     {"transform sentences",             task4Point1}},
+            {"4.2",     {"calculate prefix function",       task4Point2}}
     };
     while (true) {
         cout << BLUE_FG_BOLD << "Enter task number (e.g. 1.1.a): ";
