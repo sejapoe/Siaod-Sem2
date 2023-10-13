@@ -8,6 +8,10 @@
 #include "2.h"
 #include "3.h"
 #include "4.h"
+#include "5.h"
+#include "6.h"
+#include "7.h"
+#include "8.h"
 
 using std::string;
 using std::pair;
@@ -32,7 +36,12 @@ int main() {
             {"2.bin",   {"binary search by key",            task2binary}},
             {"3",       {"hashes",                          task3}},
             {"4.1",     {"transform sentences",             task4Point1}},
-            {"4.2",     {"calculate prefix function",       task4Point2}}
+            {"4.2",     {"calculate prefix function",       task4Point2}},
+            {"5",       {"AVL Tree",                        task5}},
+            {"6",       {"Floyd algo",                      task6}},
+            {"7.2a",    {"Shannon-Fano algorithm",          task7Point2A}},
+            {"7.2b",    {"Huffman algorithm",               task7Point2B}},
+            {"8",       {"DP (excel from ege)",             task8}}
     };
     while (true) {
         cout << BLUE_FG_BOLD << "Enter task number (e.g. 1.1.a): ";
