@@ -5,6 +5,7 @@
 #ifndef SEM2_COLORS_H
 #define SEM2_COLORS_H
 
+
 #define GREEN_BG "[42m"
 #define RED_BG "[41m"
 
