@@ -249,4 +249,100 @@ void task7Point2B() {
               << ((double) compressed.size()) / ((double) text.size() * 4 * 8) * 100 << "%" << RESET << "\n";
 }
 
+struct Pair {
+    int offset;
+    int len;
+    char symbol;
+};
+
+// lz77
+void task7lz77() {
+    const std::string &phrase = "010110110110100010001";
+
+    std::vector<Pair> encoded;
+
+    int phraseLength = phrase.length();
+    int currentIndex = 0;
+
+    while (currentIndex < phraseLength) {
+        Pair currentPair;
+        currentPair.offset = 0;
+        currentPair.len = 0;
+        currentPair.symbol = phrase[currentIndex];
+
+        for (int i = currentIndex - 1; i >= 0; i--) {
+            int j = 0;
+            while (i + j < currentIndex && phrase[i + j] == phrase[currentIndex + j] &&
+                   currentIndex + j < phraseLength) {
+                j++;
+            }
+
+            if (j > currentPair.len) {
+                currentPair.offset = currentIndex - i - 1;
+                currentPair.len = j;
+                if (currentIndex + j < phraseLength) {
+                    currentPair.symbol = phrase[currentIndex + j];
+                }
+            }
+        }
+
+        encoded.push_back(currentPair);
+        if (currentPair.len == 0) {
+            currentIndex += 1;
+        } else {
+            currentIndex += currentPair.len;
+        }
+    }
+
+    for (const Pair &pair: encoded) {
+        std::cout << "<" << pair.offset << ", " << pair.len << ", " << pair.symbol << "> ";
+    }
+    std::cout << std::endl;
+}
+
+struct SymbolCode {
+    int index;
+    std::wstring symbol;
+    wchar_t character;
+
+    SymbolCode(int index, std::wstring symbol) : index(index), symbol(std::move(symbol)), character('\0') {}
+
+    SymbolCode(int index, wchar_t character) : index(index), character(character) {}
+};
+
+bool findInDictionary(const std::wstring &target, const std::vector<SymbolCode *> &dictionary, int &index) {
+    for (const auto &entry: dictionary) {
+        if (target == entry->symbol) {
+            index = entry->index;
+            return true;
+        }
+    }
+    return false;
+}
+
+void task7lz78() {
+    std::wstring_convert<convert_type, wchar_t> converter;
+    const std::wstring &phrase = L"менменаменаменатеп";
+
+    std::wstring currentSubstring;
+    std::vector<SymbolCode *> dictionary;
+    std::vector<SymbolCode *> encodedResult;
+    int index = 0;
+
+    for (wchar_t character: phrase) {
+        currentSubstring += character;
+        if (!findInDictionary(currentSubstring, dictionary, index)) {
+            dictionary.push_back(new SymbolCode(dictionary.size() + 1, currentSubstring));
+            encodedResult.push_back(new SymbolCode(index, character));
+            index = 0;
+            currentSubstring = L"";
+        }
+    }
+
+    for (const auto &entry: encodedResult) {
+        std::cout << "<" << entry->index << ", " << converter.to_bytes(entry->character) << "> ";
+    }
+
+}
+
 #endif //SEM2_7_H

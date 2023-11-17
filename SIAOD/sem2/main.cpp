@@ -39,6 +39,8 @@ int main() {
             {"4.2",     {"calculate prefix function",       task4Point2}},
             {"5",       {"AVL Tree",                        task5}},
             {"6",       {"Floyd algo",                      task6}},
+            {"7.1a",    {"lz77",                            task7lz77}},
+            {"7.1b",    {"lz78",                            task7lz78}},
             {"7.2a",    {"Shannon-Fano algorithm",          task7Point2A}},
             {"7.2b",    {"Huffman algorithm",               task7Point2B}},
             {"8",       {"DP (excel from ege)",             task8}}
